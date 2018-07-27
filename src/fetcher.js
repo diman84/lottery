@@ -8,6 +8,11 @@ import "./delay"
 import { delayPromise } from './delay';
 
 
+let resFolder = path.join(__dirname, '..', 'results');
+
+if (!fs.existsSync(resFolder)){
+    fs.mkdirSync(resFolder);
+}
 
 Promise.all(Array(1410).fill().forEach((x,i) => {
     let draw = (i + 1).toString();
@@ -44,9 +49,9 @@ Promise.all(Array(1410).fill().forEach((x,i) => {
                     }
                 })
                 .then(res => {
-                    var resp, filePath = path.join(__dirname, '..', 'results', draw + '.html');
+                    var resp, filePath = path.join(resFolder, draw + '.html');
                     eval("resp = " + res);
-                    fs.writeFile(filePath, `<html><head><title>${draw}</title></head><body>${resp.returnObject.result.table}</body></html>`)
+                    fs.writeFile(filePath, `<html><head><meta charset="utf-8"><title>${draw}</title></head><body>${resp.returnObject.result.table}</body></html>`)
                         .then(f => console.log('file written to: ' + filePath));
                 })
                 .catch(err => {

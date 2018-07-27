@@ -8,8 +8,19 @@
             "type": "node",
             "request": "launch",        
             "preLaunchTask": "compile",    
-            "name": "Launch Program",
+            "name": "Fetch Hmtl",
             "program": "${workspaceFolder}/src/fetcher.js",
+            "outFiles": [
+                "${workspaceRoot}/.compiled/**/*.js"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",        
+            "preLaunchTask": "compile",    
+            "name": "Parse Hmtl",
+            "program": "${workspaceFolder}/src/parser.js",
             "outFiles": [
                 "${workspaceRoot}/.compiled/**/*.js"
             ],
